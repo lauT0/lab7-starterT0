@@ -37,6 +37,7 @@ function getRecipesFromStorage() {
  * @param {Array<Object>} recipes An array of recipes
  */
 function addRecipesToDocument(recipes) {
+	//
 	// A10. TODO - Get a reference to the <main> element
 	if (recipes == null){return;}
 	let mainElt = document.querySelector('main');
