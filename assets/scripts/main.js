@@ -25,6 +25,7 @@ function getRecipesFromStorage() {
 	//           header. It is possible in only a single line, but should
 	//           be no more than a few lines.
 	let text = localStorage.getItem('recipes');
+	if(text == null) {return [];}
 	return JSON.parse(text);
 }
 
@@ -37,6 +38,7 @@ function getRecipesFromStorage() {
  */
 function addRecipesToDocument(recipes) {
 	// A10. TODO - Get a reference to the <main> element
+	if (recipes == null){return;}
 	let mainElt = document.querySelector('main');
 	// A11. TODO - Loop through each of the recipes in the passed in array,
 	//            create a <recipe-card> element for each one, and populate
@@ -95,14 +97,14 @@ function initFormHandler() {
 		mainElt.append(newCard);
 		// B9. TODO - Get the recipes array from localStorage, add this new recipe to it, and
 		//            then save the recipes array back to localStorage
-		let text = localStorage.getItem('recipes');
-		let json = JSON.parse(text);
+		let json = getRecipesFromStorage();
 		json.push(recipeObject);
 		saveRecipesToStorage(json);
 	});
 	// B10. TODO - Get a reference to the "Clear Local Storage" button
 	let clrButton = document.querySelector('button.danger');
 	// B11. TODO - Add a click event listener to clear local storage button
+	
 	clrButton.addEventListener('click', function() {
 		// Steps B12 & B13 will occur inside the event listener from step B11
 		// B12. TODO - Clear the local storage
@@ -114,4 +116,5 @@ function initFormHandler() {
 			children[i].remove();
 		}
 	});
+	
 }
